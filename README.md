@@ -13,7 +13,7 @@ After these have been installed you are good to go.
 ## Downloading
 
 For downloading the project there is two options.
-1. Download the zip from [latest releases](https://github.com/levitesuo/tiff_mtg/releases/tag/working_barebones) and unzipit to a directory of your chosing.
+1. Download the zip from [latest releases](https://github.com/levitesuo/tiff_mtg/releases/tag/actually_working) and unzipit to a directory of your chosing.
 2. Use git clone and clone the project to a directory of your choosing.
 
 ## Installation
