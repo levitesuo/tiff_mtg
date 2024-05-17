@@ -38,7 +38,7 @@ class MenuView:
 2. Copy past the cardnames with all the extra bits. Make sure that there is no extra characters.
 3. Select the desiered dpi filename and mark size. Set mark size 1 for no cutmarks.
 4. Wait patiently while the aplication is working.
-5. Select the direcotry and filename for saving the file."""
+5. The program will save all pages individually in the pages directory. The size of 100+ card pdf is too big to save at once."""
         notice_lable = ttk.Label(master=self._frame,
                                  text=instructions, foreground='blue', font=("Noto Mono", 11)
                                  )
@@ -53,6 +53,9 @@ class MenuView:
 
         self.mark = self._draw_text_box(
             'mark size', '401', filename_frame)
+
+        self.filename = self._draw_text_box(
+            'filename', 'deck', filename_frame)
 
         start_button = ttk.Button(
             master=filename_frame,
@@ -74,9 +77,9 @@ class MenuView:
 
     def _start_function(self):
         text = self.textfield.get("1.0", tk.END)
-        filename = asksaveasfilename()
         dpi = self.dpi.get()
         mark = self.mark.get()
+        filename = self.filename.get()
 
         service.init(text, dpi, mark, filename)
 

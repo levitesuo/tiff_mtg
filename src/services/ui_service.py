@@ -14,11 +14,10 @@ class UiService:
         self.text = text_processor(text)
         self.dpi = int(dpi)
         self.mark = int(mark)
-        self.filename = filename
+        self.pdf_maker.filename = filename
 
     def run(self, set_progres):
         self.pdf_maker.add_cards(self.text, self.dpi, self.mark, set_progres)
-        self.pdf_maker.save(self.filename)
 
 
 service = UiService()

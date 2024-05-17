@@ -1,17 +1,21 @@
 from services.image_sticher import PageMaker
 from repository.card import getCardImages
 from PIL import ImageFile
+import os
 
 
 class PdfMaker:
     def __init__(self):
         self.dpi = None
         self.mark = None
-        self._pdf = []
+        self.page_num = 0
+        self.page_maker = None
+        self.filename = "deck"
 
     def _add_page_to_pdf(self, cards):
-        page = self.page_maker.get_page_png(cards)
-        self._pdf.append(page)
+        ImageFile.LOAD_TRUNCATED_IMAGES = True
+        page = self.page_maker.get_page_png(cards).convert('RGB')
+        page.save(f"pages/{self.filename}_page_{self.page_num}.pdf")
 
     def add_cards(self, card_data_list, dpi, mark, set_progres):
         self.page_maker = PageMaker(dpi, mark)
@@ -30,15 +34,6 @@ class PdfMaker:
             cards.append(card_image)
             if i % 9 == 8:
                 self._add_page_to_pdf(cards)
+                self.page_num += 1
         if len(cards) != 9:
             self._add_page_to_pdf(cards)
-
-    def save(self, filename):
-        ImageFile.LOAD_TRUNCATED_IMAGES = True
-        first_image = self._pdf[0].convert('RGB')
-        if len(self._pdf) > 1:
-            rest = [im.convert('RGB') for im in self._pdf[1:]]
-            first_image.save(filename, save_all=True,
-                             append_images=rest)
-        else:
-            first_image.save(fp=filename)
