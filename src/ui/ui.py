@@ -37,4 +37,3 @@ class UI:
         self._current_view = ProgresView(
             self._root
         )
-        self._current_view.pack()

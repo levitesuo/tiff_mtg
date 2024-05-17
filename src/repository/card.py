@@ -10,7 +10,7 @@ def strFormater(char):
 
 
 def getCardUrl(card_data):
-    base_url = f"https://api.scryfall.com/cards/{card_data['set'].lower()}/{int(card_data['id'])}"
+    base_url = f"https://api.scryfall.com/cards/{card_data['set'].lower()}/{card_data['id']}"
     return base_url
 
 
