@@ -26,6 +26,8 @@ Then run the following command.
 poetry install
 ```
 
+Create a directory where the pdf:s will be saved names 'pages' in the project root.
+
 ## Startup
 
 If you just did the installation you are in the right direcotry, otherwise navigate back to the directory .../tiff_mtg and run the following command. 
