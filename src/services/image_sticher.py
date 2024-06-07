@@ -25,19 +25,27 @@ class PageMaker:
                                        self.x_marg, self.card_height * y + self.y_marg), mask=scaled)
         if not self.mark_size:
             return page
-        for i, image in enumerate(card_image_list):
+        for i in range(9):
             x = i // 3
             y = i % 3
             hori_mark_im = Image.new(mode='RGBA', size=(5, self.mark_size),
-                                     color=(50, 50, 50, 255))
+                                     color=(255, 255, 255, 255))
             vert_mark_im = Image.new(mode='RGBA', size=(self.mark_size, 5),
-                                     color=(50, 50, 50, 255))
-            page.paste(im=vert_mark_im, box=(
-                self.card_width * x + self.x_marg - int(vert_mark_im.size[0] / 2), self.card_height * y + self.y_marg))
-            page.paste(im=vert_mark_im, box=(
-                self.card_width * (x + 1) + self.x_marg - int(vert_mark_im.size[0] / 2), self.card_height * (y + 1) + self.y_marg))
-            page.paste(im=hori_mark_im, box=(
-                self.card_width * x + self.x_marg, self.card_height * y + self.y_marg - int(hori_mark_im.size[1] / 2)))
-            page.paste(im=hori_mark_im, box=(
-                self.card_width * (x + 1) + self.x_marg, self.card_height * (y + 1) + self.y_marg - int(hori_mark_im.size[1] / 2)))
+                                     color=(255, 255, 255, 255))
+            if x == 0:
+                for j in range(2):
+                    page.paste(im=vert_mark_im, box=(
+                        self.x_marg - vert_mark_im.size[0], self.card_height * (y+j) + self.y_marg))
+            if y == 0:
+                for j in range(2):
+                    page.paste(im=hori_mark_im, box=(
+                        self.card_width * (x+j) + self.x_marg, self.y_marg - hori_mark_im.size[1]))
+            if x == 2:
+                for j in range(2):
+                    page.paste(im=vert_mark_im, box=(
+                        self.card_width * 3 + self.x_marg, self.card_height * (y+j) + self.y_marg))
+            if y == 2:
+                for j in range(2):
+                    page.paste(im=hori_mark_im, box=(
+                        self.card_width * (x+j) + self.x_marg, self.card_height * 3 + self.y_marg))
         return page
