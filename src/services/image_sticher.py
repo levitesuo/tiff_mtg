@@ -28,9 +28,9 @@ class PageMaker:
         for i in range(9):
             x = i // 3
             y = i % 3
-            hori_mark_im = Image.new(mode='RGBA', size=(5, self.mark_size),
+            hori_mark_im = Image.new(mode='RGBA', size=(7, self.mark_size),
                                      color=(255, 255, 255, 255))
-            vert_mark_im = Image.new(mode='RGBA', size=(self.mark_size, 5),
+            vert_mark_im = Image.new(mode='RGBA', size=(self.mark_size, 7),
                                      color=(255, 255, 255, 255))
             if x == 0:
                 for j in range(2):
